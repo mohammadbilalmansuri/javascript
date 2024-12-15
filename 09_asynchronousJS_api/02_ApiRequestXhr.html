@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XMLHttpRequest</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        font-family: "Nunito", sans-serif;
+      }
+      body {
+        background-color: #111111;
+        color: #ffffff;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2>XMLHttpRequest</h2>
+    <ul>
+      <li>0 UNSENT - Client has been created. open() not called yet.</li>
+      <li>1 OPENED - open() has been called.</li>
+      <li>
+        2 HEADERS_RECEIVED - send() has been called, and headers and status are
+        available.
+      </li>
+      <li>3 LOADING - Downloading; responseText holds partial data.</li>
+      <li>4 DONE - The operation is complete.</li>
+    </ul>
+
+    <!-- https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest -->
+    <!-- https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/readyState -->
+
+    <script>
+      const requestUrl = "https://api.github.com/users/hiteshchoudhary"; // URL of the API endpoint
+      const xhr = new XMLHttpRequest(); // Creating an instance of XMLHttpRequest
+
+      xhr.open("GET", requestUrl); // Configuring the request method (GET) and URL
+
+      xhr.onreadystatechange = function () {
+        // Event listener for monitoring changes in the request state
+        // onreadystatechange continuesly tracks
+        console.log(xhr.readyState); // Logging the current state of the request
+
+        // Handling different states of the request
+        if (xhr.readyState === 4) {
+          // State 4 indicates that the operation is complete
+          const data = JSON.parse(this.responseText); // Parsing the response text to JSON, // here reponseText is the api data and in most cases it come as a string so the "JSON.parse" convert that string in the object. this is using for current context.
+
+          console.log(typeof data); // Logging the type of data received (should be 'object')
+          console.log(data); // Logging the entire data object received from the API
+          console.log(data.followers); // Logging a specific property of the data object
+        }
+      };
+
+      xhr.send(); // Sending the HTTP request by calling xhr.open
+    </script>
+  </body>
+</html>

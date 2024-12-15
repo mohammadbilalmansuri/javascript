@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SetInterval & ClearInterval</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        font-family: "Nunito Sans", sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: #0f172a;
+        color: #ffffff;
+      }
+
+      div.main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        width: 100vw;
+        height: 100vh;
+        gap: 30px;
+      }
+
+      h1 {
+        font-size: 40px;
+        line-height: 40px;
+      }
+
+      p {
+        font-size: 20px;
+        padding: 5px 10px;
+        background-color: #677596;
+      }
+
+      div.btns {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+      }
+
+      .btn {
+        padding: 10px 20px;
+        color: #0f172a;
+        border: none;
+        background-color: #ffffff;
+        font-size: 18px;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .btn:hover {
+        color: #ffffff;
+        background-color: #677596;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="main">
+      <h1>Local Time</h1>
+      <p id="time">Loading...</p>
+      <div class="btns">
+        <button class="btn" id="stop">Stop</button>
+        <button class="btn" id="start">Start</button>
+      </div>
+    </div>
+
+    <script>
+      let time = document.querySelector("#time");
+      const stop = document.querySelector("#stop");
+      const start = document.querySelector("#start");
+
+      // Function to update the display with local time
+      const localTime = function () {
+        let date = new Date();
+        time.innerHTML = date.toLocaleTimeString("en", {
+          timeZone: "Asia/Kolkata",
+        });
+        // time.innerHTML = date.toLocaleTimeString('en', 'US')
+      };
+
+      // Set interval to update local time every second
+      let timeRunning = setInterval(localTime, 1000);
+
+      // Event listener to stop the time display
+      stop.addEventListener("click", function (e) {
+        clearInterval(timeRunning);
+      });
+
+      // Event listener to start the time display
+      start.addEventListener("click", function (e) {
+        timeRunning = setInterval(localTime, 1000);
+      });
+
+      // const sayDate = function (str) {
+      //     console.log(str, Date.now());
+      // }
+
+      // // setInterval(handeler->function, time in milisecond, custom parameter(optional))
+      // const intervalId = setInterval(sayDate, 1000, "hi") //setInterval execute function continuesly with time delay
+
+      // clearInterval(intervalId) // user to stop setInterval => it need a reffrence of the setInterval in ()
+    </script>
+  </body>
+</html>

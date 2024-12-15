@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM - Create Element With Function | Edit | Remove</title>
+  </head>
+
+  <body style="background-color: #212121; color: #fff">
+    <!-- Body of the HTML page -->
+    <ul class="language">
+      <li>JavaScript</li>
+    </ul>
+  </body>
+  <script>
+    // JavaScript code for DOM manipulation
+
+    // Function to add a new language to the list (basic method)
+    function addLanguage(langName) {
+      const li = document.createElement("li");
+      li.innerHTML = `${langName}`;
+      document.querySelector(".language").appendChild(li);
+    }
+    addLanguage("Python");
+    addLanguage("TypeScript");
+
+    // Function to add a new language to the list (optimized method, recommended for production)
+    function addOptiLanguage(langName) {
+      const li = document.createElement("li");
+      li.appendChild(document.createTextNode(langName));
+      document.querySelector(".language").appendChild(li);
+    }
+    addOptiLanguage("Kotlin");
+
+    // -----Edit Elements--------
+
+    // Selecting the second language element
+    const secondLang = document.querySelector("li:nth-child(2)");
+    console.log(secondLang);
+
+    // Editing the second language element using different approaches
+
+    // First approach: Changing innerHTML
+    // secondLang.innerHTML = "Ruby on Rails";
+
+    // Second approach: Replacing the element with a new one
+    const newli = document.createElement("li");
+    newli.textContent = "Ruby on Rails";
+    secondLang.replaceWith(newli);
+
+    // Third approach: Changing outerHTML of the first language element
+    const firstLang = document.querySelector("li:first-child");
+    firstLang.outerHTML = "<li>HTML & CSS</li>";
+
+    // Fourth approach: Changing text content of the last language element
+    const lastLang = document.querySelector("li:last-child");
+    lastLang.innerText = "JavaScript";
+
+    // ----------Remove Element------------
+
+    // Removing the last language element
+    const lastLanguage = document.querySelector("li:last-child");
+    lastLanguage.remove();
+  </script>
+</html>

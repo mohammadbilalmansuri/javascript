@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SetTimeout & clearTimeout</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        font-family: "Nunito Sans", sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: #0f172a;
+        color: #ffffff;
+      }
+
+      div.main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        width: 100vw;
+        height: 100vh;
+        gap: 20px;
+      }
+
+      h1 {
+        font-size: 40px;
+        line-height: 40px;
+      }
+      p {
+        font-size: 20px;
+      }
+
+      .btn {
+        padding: 10px 30px;
+        color: #0f172a;
+        border: none;
+        background-color: #ffffff;
+        font-size: 18px;
+        transition: all 0.3s ease-in-out;
+      }
+      .btn:hover {
+        color: #ffffff;
+        background-color: #677596;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="main">
+      <h1>Bilal Mansuri</h1>
+      <button class="btn" id="stop">Stop SetTimeout</button>
+    </div>
+  </body>
+
+  <script>
+    // Function to change the name after a delay
+    const changeName = function () {
+      document.querySelector("h1").innerHTML = "Mohammad Bilal Mansuri";
+    };
+
+    // setTimeout(handler, time in milliseconds)
+    // This setTimeout executes only once after the specified delay time
+    const nameChangeTimeout = setTimeout(changeName, 3000);
+
+    // Adding click event listener to the button to stop the setTimeout
+    document.querySelector("#stop").addEventListener("click", function () {
+      // clearTimeout(timerId) is used to stop the setTimeout execution
+      clearTimeout(nameChangeTimeout);
+      console.log("Change in name after refreshing the page is STOPPED");
+    });
+  </script>
+</html>

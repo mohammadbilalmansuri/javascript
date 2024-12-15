@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React</title>
+  </head>
+  <body style="background-color: #111111; color: #ffffff">
+    <button>Button Clicked</button>
+  </body>
+  <script>
+    // Usecase of bind in React
+    class React {
+      // these is just assume values not predefined
+      constructor() {
+        this.library = "React";
+        this.server = "https://localhost:300";
+
+        // Using bind to ensure the correct context ('this') inside the event listener.
+        document
+          .querySelector("button")
+          .addEventListener("click", this.handleClick.bind(this)); // bind is not like call in call it takes reffrence but here bind attach things to take access accross.
+      }
+
+      handleClick() {
+        console.log("Button clicked");
+        console.log(this.server); // 'this' will not be accessible here without using bind.
+      }
+    }
+
+    // Instantiating the React class.
+    const app = new React();
+  </script>
+</html>

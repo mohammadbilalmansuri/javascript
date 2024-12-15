@@ -1,0 +1,44 @@
+* {
+  font-family: "Nunito Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  transition: all 1s ease-in-out;
+}
+
+div.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 1140px;
+  margin: auto;
+  width: 100vw;
+  height: 100vh;
+  gap: 30px;
+}
+
+div.btns {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+h1 {
+  font-size: 40px;
+  line-height: 40px;
+  margin-bottom: -10px;
+}
+h1 + p {
+  font-size: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 0;
+  transition: all 0.3s ease-in-out;
+}

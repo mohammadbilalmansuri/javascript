@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GitHub User Cart</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        font-family: "Nunito Sans", sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: #0f172a;
+        color: #ffffff;
+      }
+
+      div.main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        max-width: 1140px;
+        margin: auto;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      h1 {
+        font-size: 30px;
+        line-height: 30px;
+      }
+
+      h1 + p {
+        font-size: 18px;
+        font-weight: 500;
+      }
+
+      .box {
+        display: flex;
+        flex-direction: column;
+        background-color: #ffffff;
+        color: #0f172a;
+        padding: 30px;
+        box-shadow: 0 0 20px #677596;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 20px;
+      }
+
+      .btn {
+        padding: 10px 20px;
+        background-color: #0f172a;
+        color: #ffffff;
+        font-size: 16px;
+        transition: all 0.3s ease-in-out;
+        border-radius: 10px;
+        text-decoration: none;
+      }
+
+      .btn:hover {
+        background-color: #677596;
+      }
+
+      .btn-div {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        margin-top: 10px;
+      }
+
+      img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="main">
+      <div class="box">
+        <img class="user-img" src="" alt="" />
+        <h1 class="user-name"></h1>
+        <p class="followers"></p>
+        <div class="btn-div">
+          <a class="btn user-profile" href="">GitHub Profile</a>
+          <a class="btn user-api" href="">API</a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const apiUrl = "https://api.github.com/users/hiteshchoudhary";
+      const request = new XMLHttpRequest();
+      request.open("GET", apiUrl);
+      request.onreadystatechange = function () {
+        if (request.readyState === 4) {
+          const userData = JSON.parse(this.responseText);
+          // console.log(userData);
+
+          document
+            .querySelector(".user-img")
+            .setAttribute("src", `${userData.avatar_url}`);
+          document.querySelector(".user-name").innerHTML = userData.name;
+          document.querySelector(
+            ".followers"
+          ).innerHTML = `Followers : ${userData.followers}`;
+          document
+            .querySelector(".user-profile")
+            .setAttribute("href", `${userData.html_url}`);
+          document
+            .querySelector(".user-api")
+            .setAttribute("href", `${userData.url}`);
+        } else {
+          console.error(`Failed to fetch data. Status code: ${request.status}`);
+        }
+      };
+      request.send();
+    </script>
+  </body>
+</html>

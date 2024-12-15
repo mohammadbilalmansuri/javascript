@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM - Parent, Child</title>
+  </head>
+  <body style="background-color: #212121; color: #fff">
+    <div class="parent">
+      <!-- Container for days of the week -->
+      <div class="day">Monday</div>
+      <div class="day">Tuesday</div>
+      <div class="day">Wednesday</div>
+      <div class="day">Thursday</div>
+    </div>
+  </body>
+  <script>
+    // JavaScript code to demonstrate DOM parent-child relationships
+
+    // Selecting the parent element
+    const parent = document.querySelector(".parent");
+    console.log(parent);
+
+    // Logging all child elements of the parent
+    console.log(parent.children);
+
+    // Accessing and logging the inner HTML of the second child element
+    console.log(parent.children[1].innerHTML);
+
+    // Iterating through all child elements and logging their inner HTML
+    for (let i = 0; i < parent.children.length; i++) {
+      console.log(parent.children[i].innerHTML);
+    }
+
+    // Changing the style of the second child element
+    parent.children[1].style.color = "orange";
+
+    // Accessing and logging the first and last child elements of the parent
+    console.log(parent.firstElementChild);
+    console.log(parent.lastElementChild);
+
+    // Selecting the first day element
+    const dayOne = document.querySelector(".day");
+    console.log(dayOne);
+
+    // Accessing and logging the parent element of the first day element
+    console.log(dayOne.parentElement);
+
+    // Accessing and logging the next sibling element of the first day element
+    console.log(dayOne.nextElementSibling);
+
+    // Logging all nodes of the parent element (including text nodes and comments)
+    console.log("NODES: ", parent.childNodes);
+  </script>
+</html>
