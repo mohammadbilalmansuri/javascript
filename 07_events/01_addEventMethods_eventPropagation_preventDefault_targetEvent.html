@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Events</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        font-family: "Nunito Sans", sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: #0f172a;
+        color: #ffffff;
+      }
+
+      div.main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        width: 100vw;
+        height: 100vh;
+        gap: 30px;
+      }
+
+      h1 {
+        font-size: 30px;
+        line-height: 30px;
+      }
+
+      .box {
+        display: flex;
+        flex-direction: column;
+        background-color: #ffffff;
+        color: #0f172a;
+        padding: 20px;
+        gap: 20px;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .btn {
+        padding: 10px 30px;
+        color: #ffffff;
+        background-color: #0f172a;
+        font-size: 18px;
+        transition: all 0.3s ease-in-out;
+        text-decoration: none;
+      }
+
+      .btn:hover {
+        background-color: #677596;
+      }
+
+      .box img {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="main">
+      <h1>My Images</h1>
+      <div id="images" class="box">
+        <div>
+          <img
+            id="img1"
+            class="img1"
+            src="https://images.pexels.com/photos/2004161/pexels-photo-2004161.jpeg"
+            alt="First Image"
+          />
+          <img
+            id="img2"
+            class="img2"
+            src="https://images.pexels.com/photos/1089440/pexels-photo-1089440.jpeg"
+            alt="Second Image"
+          />
+          <img
+            id="img3"
+            class="img3"
+            src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg"
+            alt="Third Image"
+          />
+          <img
+            id="img4"
+            class="img4"
+            src="https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg"
+            alt="Fourth Image"
+          />
+        </div>
+        <a href="#" class="btn" id="link">Link Disabled</a>
+      </div>
+
+      <!-- On click remove images -->
+      <div id="images-box" class="box">
+        <div>
+          <img
+            id="image1"
+            class="img1"
+            src="https://images.pexels.com/photos/2004161/pexels-photo-2004161.jpeg"
+            alt="First Image"
+          />
+          <img
+            id="image2"
+            class="img2"
+            src="https://images.pexels.com/photos/1089440/pexels-photo-1089440.jpeg"
+            alt="Second Image"
+          />
+          <img
+            id="image3"
+            class="img3"
+            src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg"
+            alt="Third Image"
+          />
+          <img
+            id="image4"
+            class="img4"
+            src="https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg"
+            alt="Fourth Image"
+          />
+        </div>
+        <a href="#" class="btn" id="remove">Remove This Box</a>
+      </div>
+    </div>
+
+    <script>
+      // Adding events directly in HTML tags is not recommended.
+
+      // --- Important Events ---
+      // type, timestamp, preventDefault, target, toElement, srcElement, currentTarget
+      // Interview Perspective => clientX, clientY, screenX, screenY
+      // Key Related => altkey, ctrlkey, shiftkey, keyCode */
+
+      // attachEvent() => this is also a method to add events but it is old method
+      // jQuery - on  => in jQuery this is how we add on event in past
+
+      // This method gives us less features, this is not a wrong method but we should not use this method.
+      // document.getElementById('img2').onclick = function(){
+      //     console.log('Second Image Clicked');
+      // };
+
+      //This is the best method to add events
+      //document.getElementById('img1').addEventListener('click', function(e){
+      //     console.log("First Image Clicked");
+      //})
+
+      //EventListener Parameters ==> addEventListener('eventName', 'function(parameter)', true/false)
+
+      // Third parameter in event listener = > These depends on Event Propogations (means direction of events top-bottom or bottom-top), it used according the usecase
+      // false = Event bubbling (used in most scenarios)  ===   direction of event goes inner to outer elements (means bottom to top)
+      // true = Event capturing   ===   direction of event goes outer to inner elements (means top to bottom)
+
+      /*------ Event Propogation => Event bubbling --------
+        document.getElementById('images').addEventListener('click', function (e) {
+            console.log("Clicked inside the box");
+        }, false)
+        // it will print event Clicked inside the box
+
+        document.getElementById('img2').addEventListener('click', function (e) {
+            console.log("Second Image clicked");
+        }, false)
+        // it will print inner events first = 'Second Image clicked' 
+        // Than print outer event = 'Clicked inside the box' 
+        // Because the first event is inside the box that considering second event */
+
+      /*---------- Event Propogation => Event Capturing -----------
+        document.getElementById('images').addEventListener('click', function (e) {
+            console.log("Clicked inside the box");
+        }, true)
+        // it will print = Clicked inside the box
+
+        document.getElementById('img1').addEventListener('click', function (e) {
+            console.log("First Image clicked");
+        }, true)
+        // It will print outer events first = 'Clicked inside the box'
+        // Than print inner event = 'Second Image clicked' 
+        // Because the first event is inside the box that considering second event */
+
+      // ----------------------------------------------------------------------------------
+
+      // Adding click event listener to the 'images' box
+      document.getElementById("images").addEventListener(
+        "click",
+        function (e) {
+          console.log("Clicked inside the box");
+          e.stopPropagation(); // Stop event propagation
+        },
+        false
+      );
+
+      // Adding click event listener to the 'Link Disabled' button
+      document.getElementById("link").addEventListener(
+        "click",
+        function (e) {
+          e.preventDefault(); // Prevent default action (e.g., form submission, link click)
+          e.stopPropagation(); // Stop event propagation
+          console.log("'Link Disabled' Button clicked");
+        },
+        false
+      );
+
+      // ----------------------------------------------------------------------------------
+
+      // Adding click event listener to the 'Remove This Box' button and handling click event for dynamic removal of the box
+      document
+        .querySelector("#images-box")
+        .addEventListener("click", function (e) {
+          console.log(e.target.tagName); // target = tell us from where the event is happening // tagName = show tag name which is targeting the event
+          // console.log(e.target.parentNode); // parentNode = show the parent tag of target tag
+
+          // if we do not use if so it will remove box by clicking anywhere
+          if (e.target.id === "remove") {
+            console.log(e.target.id);
+            let removeIt = e.target.parentNode; // Selecting the parent element of the button
+            removeIt.remove(); // Removing the parent element
+            // removeIt.parentNode.removeChild(removeIt); // Alternative method to remove the parent element
+          }
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day 9: DOM Manipulation</title>
+    <style>
+      .myClass {
+        background-color: yellow;
+      }
+      .newClass {
+        color: red;
+      }
+      .hoverElement {
+        border: 2px solid black;
+        padding: 10px;
+      }
+    </style>
+
+  <body>
+    <h1>Day 9: DOM Manipulation</h1>
+
+    <!-- Elements for Activity 1 -->
+    <div id="myElement">Original Text Content</div>
+    <div class="myClass">Change my background color</div>
+
+    <!-- Elements for Activity 2 -->
+    <ul>
+      <li>Existing list item 1</li>
+      <li>Existing list item 2</li>
+    </ul>
+
+    <!-- Elements for Activity 3 -->
+    <div id="removeMe">Remove this element</div>
+    <div class="parentElement">
+      <div>Child 1</div>
+      <div>Child 2</div>
+      <div>Child 3</div>
+    </div>
+
+    <!-- Elements for Activity 4 -->
+    <img src="originalImage.jpg" alt="Original Image" />
+    <div class="myElement">Modify my classes</div>
+
+    <!-- Elements for Activity 5 -->
+    <button>Click me</button>
+    <p>Original paragraph text</p>
+    <div class="hoverElement">Hover over me</div>
+
+    <script>
+      // ---------- Activity 1: Selecting and Manipulating Elements ----------
+
+      //  Select an HTML element by its ID and change its text content
+      document.getElementById("myElement").textContent = "New Text Content";
+
+      // Select an HTML element by its class and change its background color
+      document.querySelector(".myClass").style.backgroundColor = "lightblue";
+
+      // ---------- Activity 2: Creating and Appending Elements ----------
+
+      // Create a new div element with some text content and append it to the body
+      let newDiv = document.createElement("div");
+      newDiv.textContent = "This is a new div element";
+      document.body.appendChild(newDiv);
+
+      // Create a new li element and add it to an existing ul list
+      let newLi = document.createElement("li");
+      newLi.textContent = "New list item";
+      document.querySelector("ul").appendChild(newLi);
+
+      // ---------- Activity 3: Removing Elements ----------
+
+      // Select an HTML element and remove it from the DOM
+      let elementToRemove = document.getElementById("removeMe");
+      elementToRemove.parentNode.removeChild(elementToRemove);
+
+      // Remove the last child of a specific HTML element
+      let parentElement = document.querySelector(".parentElement");
+      parentElement.removeChild(parentElement.lastElementChild);
+
+      // ---------- Activity 4: Modifying Attributes and Classes ----------
+
+      // Select an HTML element and change one of its attributes (e.g., src of an img tag)
+      document.querySelector("img").setAttribute("src", "newImage.jpg");
+
+      // Add and remove a CSS class to/from an HTML element
+      let element = document.querySelector(".myElement");
+      element.classList.add("newClass");
+      element.classList.remove("oldClass");
+
+      // ---------- Activity 5: Event Handling ----------
+
+      // Add a click event listener to a button that changes the text content of a paragraph
+      document.querySelector("button").addEventListener("click", function () {
+        document.querySelector("p").textContent = "Text content changed!";
+      });
+
+      // Add a mouseover event listener to an element that changes its border color
+      document
+        .querySelector(".hoverElement")
+        .addEventListener("mouseover", function () {
+          this.style.borderColor = "red";
+        });
+    </script>
+  </body>
+</html>

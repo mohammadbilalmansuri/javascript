@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BMI Calculator</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="main">
+      <div class="box">
+        <h1>BMI Calculator</h1>
+
+        <form>
+          <input
+            type="text"
+            name="Height"
+            id="height"
+            placeholder="Enter you height in meters"
+          />
+          <p class="validation height-validation"></p>
+
+          <input
+            type="text"
+            name="Weight"
+            id="weight"
+            placeholder="Enter you weight in kilograms"
+          />
+          <p class="validation weight-validation"></p>
+
+          <button>Calculate</button>
+          <p id="result"></p>
+        </form>
+      </div>
+
+      <div class="range">
+        <h2>BMI Weight Ranges</h2>
+        <p>Under Weight Range = Less than 18.5Kg</p>
+        <p>Healthy Weight Range = 18.5Kg - 25Kg</p>
+        <p>Over Weight Range = 25Kg - 30Kg</p>
+        <p>Obesity Range = 30 or higher</p>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

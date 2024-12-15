@@ -1,0 +1,132 @@
+<!-- In the Document Object Model (DOM), every element is considered a node. The structure of this HTML file can be represented in the following hierarchy:
+    Window
+      └── Document
+            └── HTML
+                  ├── Head
+                  │     ├── Title
+                  │     └── Meta
+                  ├── Body
+                  │     └── Div
+                  │           ├── H1
+                  │           ├── H2
+                  │           ├── H2
+                  │           ├── H2
+                  │           ├── P
+                  │           ├── Input
+                  │           └── Ul
+                  │                 └── Li
+                  │                 └── Li
+                  │                 └── Li
+                  │                 └── Li
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DOM Selectors</title>
+    <style>
+      .bg-black {
+        background-color: #111111;
+        color: #fff;
+      }
+    </style>
+  </head>
+
+  <body class="bg-black">
+    <div>
+      <h1 id="title" class="heading">
+        DOM learning on Chai aur code
+        <span style="display: none">test text</span>
+      </h1>
+      <h2>Lorem ipsum dolor sit.</h2>
+      <h2>Lorem ipsum dolor sit.</h2>
+      <h2>Lorem ipsum dolor sit.</h2>
+      <p>Lorem ipsum dolor sit amet.</p>
+      <input type="password" name="" id="" />
+      <ul>
+        <li class="list-item">one</li>
+        <li class="list-item">two</li>
+        <li class="list-item">three</li>
+        <li class="list-item">four</li>
+      </ul>
+    </div>
+
+    <script>
+      // -----DOM Selectors-----
+
+      // Selecting an element by its ID
+      document.getElementById("title");
+
+      // Accessing attributes of an element selected by ID
+      document.getElementById("title").id;
+      document.getElementById("title").className;
+      document.getElementById("title").getAttribute("id");
+      document.getElementById("title").getAttribute("class");
+
+      // Modifying class attribute
+      document.getElementById("title").setAttribute("class", "primary-heading");
+
+      // Accessing and modifying styles
+      const title = document.getElementById("title");
+      title.style.backgroundColor = "white";
+      title.style.color = "black";
+      title.style.padding = "15px";
+      title.style.borderRadius = "10px";
+
+      // Accessing inner content
+      title.innerHTML; //'DOM learning on Chai aur code<span style="display: none">test text</span>'
+
+      title.textContent; //'DOM learning on Chai aur code test text'
+
+      title.innerText; //'DOM learning on Chai aur code'
+
+      // Selecting elements by class name
+      document.getElementsByClassName("primary-heading"); // HTMLCollection
+
+      // Selecting elements by tag name
+      document.querySelector("h1");
+      document.querySelectorAll("h1"); // NodeList
+      document.querySelectorAll("h2");
+      document.querySelectorAll("title");
+      document.querySelectorAll("#title");
+      document.querySelectorAll(".primary-heading");
+      document.querySelectorAll('input[type="password"]');
+      document.querySelectorAll("div ul li");
+      document.querySelector("ul");
+
+      // Manipulating elements within a list
+      const myUl = document.querySelector("ul");
+      const listItem = myUl.querySelector("li");
+      listItem.style.color = "green";
+
+      // Iterating over node lists
+      const templist = document.querySelectorAll("li");
+
+      // NodeList is not an array, but some of the properties are same and at some point it behaves like an array.
+
+      templist[1].style.color = "red";
+      templist[2].style.color = "yellow";
+      templist[3].style.color = "blue";
+
+      templist.forEach(function (item) {
+        item.style.listStyle = "none";
+        item.style.fontSize = "16px";
+      });
+
+      // Converting HTMLCollection to array for array methods
+      const listClass = document.getElementsByClassName("list-item");
+
+      // HTMLCollection is diffrent from NoodeList
+
+      const listClassArr = Array.from(listClass);
+      // Here we are converting HTMLCollection to an array for performing methods and operations
+
+      listClassArr.forEach((li) => {
+        li.style.padding = "5px";
+        li.style.fontSize = "20px";
+        li.style.listStyle = "circle";
+      });
+    </script>
+  </body>
+</html>

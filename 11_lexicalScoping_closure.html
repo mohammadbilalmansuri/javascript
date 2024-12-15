@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Closure aur chai</title>
+  </head>
+
+  <body style="background-color: #111111; color: #ffffff">
+    <h2>Practical implementation of Lexical Scoping and Closure</h2>
+    <p>Please check the second script tag in this HTML code.</p>
+    <button id="orange">Orange</button>
+    <button id="green">Green</button>
+  </body>
+
+  <script>
+    // Lexical Scoping => Inner functions have access to variables in their outer functions, but outer functions do not have access to variables in their inner functions.
+    // Lexical Scope => When functions are defined inside other functions, the scope of the outer function is called lexical scope.
+    function outer() {
+      let username = "hitesh";
+      // console.log("OUTER", secret);
+      function inner() {
+        let secret = "my123";
+        console.log("inner", username);
+      }
+      function innerTwo() {
+        console.log("innerTwo", username);
+        // console.log(secret); // Variable cannot be accessed between sibling functions.
+      }
+      inner();
+      innerTwo();
+    }
+    outer();
+    // console.log("TOO OUTER", username); // Generates an error
+
+    //--------------------------------------------------------------------------------------------------------------
+    // Closure => When an inner function is returned from an outer function, the entire lexical scope of the returned inner function is preserved, including any inner functions within it.
+
+    function makeFunc() {
+      const name = "Mozilla";
+      function displayName() {
+        console.log(name);
+      }
+      return displayName;
+    }
+    const myFunc = makeFunc();
+    myFunc();
+  </script>
+
+  <script>
+    // Practical implementation of Lexical Scoping and Closure (A basic use-case scenario) -
+
+    // We are changing the background color of the body on button click.
+
+    /* This is a simple approach:
+  document.getElementById("orange").onclick = function(){
+      document.body.style.backgroundColor = `orange`
+  }
+  document.getElementById("green").onclick = function(){
+      document.body.style.backgroundColor = `green`
+  }
+  */
+
+    // However, if there are many buttons, we would have to repeat this code. To simplify:
+
+    function clickHandler(color) {
+      // document.body.style.backgroundColor = `${color}`
+
+      // Return a function that changes the background color
+      // if we return it without return so it will autometically execute without waiting for event happen.
+
+      return function () {
+        document.body.style.backgroundColor = color; // Accessing the color variable from the outer function
+      };
+    }
+
+    // Assign click event handlers using the clickHandler function
+    document.getElementById("orange").onclick = clickHandler("orange");
+    document.getElementById("green").onclick = clickHandler("green");
+  </script>
+</html>
