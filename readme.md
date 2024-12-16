@@ -1,3 +1,3 @@
-# JavaScript Learning Notes Repository
+# My JavaScript Learning Files
 
-This repository contains my learning notes and JavaScript code files created while exploring and practicing JavaScript concepts. Each file includes commented notes to explain the functionality and concepts in detail.
+This repository contains all the JavaScript files and projects I created during my journey of learning JavaScript. Each file includes commented notes to explain concepts, logic, and functionality, making it a helpful reference for revisiting key topics.
